@@ -2,24 +2,39 @@
 
 #Owen, Ylli, and Valerie
 import csv
+import random
 #function to generate a password
-def main():
+def generatePassword():
     filename = 'passwordList.txt'
     all_passwords = []
     #open file that contains the passwords
-    with open (filename, mode='r', newline='') as csvfile:
-        csv_reader = csv.reader(csvfile, delimeter=',')
-        for row in csv_reader:
-            print(row)
-    #read the file contents into a list
+    with open (filename,'r', newline='') as f:
+        reader = csv.reader(f)
+        #read the file contents into a list
+        for row in reader:
+            all_passwords.extend(row)
+    print(all_passwords)
 
-    
+    #get a random index from the list
+    passwordIndex = random.randrange(len(all_passwords))
     #variable to hold the choice from the list
-    machinePassword = 
-
+    machinePassword = all_passwords[passwordIndex]
+    print(machinePassword)
 
 #function for taking input
-
-
+def enterGuess(machinePassword):
+    userGuess = input("Enter your password guess: ")
+    #call the comparison function
+    comparePassword(userGuess, machinePassword)
 
 #function for comparing inputs
+def comparePassword(userGuess, machinePassword):
+    while machinePassword != userGuess:
+        #call the hint function
+        hint(passwordIndex)
+        input("Enter your new password guess: ")
+
+if __name__ == '__main__':
+    generatePassword()
+
+    
