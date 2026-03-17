@@ -4,6 +4,7 @@
 import csv
 import random
 #function to generate a password
+# TODO: rewrite this class with nested arrays
 def generatePassword():
     filename = 'passwordList.txt'
     all_passwords = []
@@ -24,6 +25,9 @@ def generatePassword():
 #function for taking input
 def enterGuess(machinePassword):
     userGuess = input("Enter your password guess: ")
+    
+    # sanatize user input in future versions
+
     #call the comparison function
     comparePassword(userGuess, machinePassword)
 
