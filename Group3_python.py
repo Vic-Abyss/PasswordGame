@@ -5,22 +5,22 @@ import csv
 import random
 #function to generate a password
 # TODO: rewrite this class with nested arrays
-def generatePassword():
-    filename = 'passwordList.txt'
-    all_passwords = []
-    #open file that contains the passwords
-    with open (filename,'r', newline='') as f:
-        reader = csv.reader(f)
-        #read the file contents into a list
-        for row in reader:
-            all_passwords.extend(row)
-    print(all_passwords)
+# def generatePassword():
+#     filename = 'passwordList.txt'
+#     all_passwords = []
+#     #open file that contains the passwords
+#     with open (filename,'r', newline='') as f:
+#         reader = csv.reader(f)
+#         #read the file contents into a list
+#         for row in reader:
+#             all_passwords.extend(row)
+#     print(all_passwords)
 
-    #get a random index from the list
-    passwordIndex = random.randrange(len(all_passwords))
-    #variable to hold the choice from the list
-    machinePassword = all_passwords[passwordIndex]
-    print(machinePassword)
+#     #get a random index from the list
+#     passwordIndex = random.randrange(len(all_passwords))
+#     #variable to hold the choice from the list
+#     machinePassword = all_passwords[passwordIndex]
+#     print(machinePassword)
 
 #function for taking input
 def enterGuess(machinePassword):
@@ -42,3 +42,54 @@ if __name__ == '__main__':
     generatePassword()
 
     
+class passwordAndHintHandeler:
+    # rewrite of Vic-Abyss's work on the getPassword method
+
+    #Authors:
+        # Nicole Bromberek (Raven System)
+
+    # imports
+    import csv
+    import random
+    from pathlib import Path
+
+    # class variables
+        # set this to the selected password file
+    passwordFile = ""
+        # this is the most important array, you never reveal the first record unless the guess is correct but for every guess you display the next record, the nuber of hints is equal to the array length - 1
+    secretRow = []
+        # record of the row numbers that have already been pulled, to reduce the long term memory usage.
+    pastRowNums = []
+
+    def getNextSecretRow():
+        with open (passwordFile, newline='\r\n') as csvFile:
+            reader = csv.reader(csvFile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            rows = []
+            for row in reader:
+                rows.append(row)
+            flag = True
+            index = 0
+            while flag:
+                flag = False
+                index = random.randrange(0,len(rows))
+                if pastRowNums.__contains__(index):
+                    flag = True
+            secretRow = rows[index]
+            pastRowNums.append(index)
+            print(secretRow)
+
+    # look at the dictonary to see what password lists are present
+    def getListOfPasswordTypes():
+        dictonary = Path("dictonary")
+        return dictonary.iterdir()
+
+    # sets the new password file, and clears the class arrays
+    def setPasswordFile(newPasswordFile):
+        passwordFile = ""
+        passwordFile = newPasswordFile
+        pastRowNums = []
+        secretRow = []
+    # TESTING to validated outputs
+    # getNextSecretRow()
+    # getNextSecretRow()
+    # getNextSecretRow()
