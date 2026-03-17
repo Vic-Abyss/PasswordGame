@@ -1,0 +1,25 @@
+#Password Game Group 3
+
+#Owen, Ylli, and Valerie
+import csv
+#function to generate a password
+def main():
+    filename = 'passwordList.txt'
+    all_passwords = []
+    #open file that contains the passwords
+    with open (filename, mode='r', newline='') as csvfile:
+        csv_reader = csv.reader(csvfile, delimeter=',')
+        for row in csv_reader:
+            print(row)
+    #read the file contents into a list
+
+    
+    #variable to hold the choice from the list
+    machinePassword = 
+
+
+#function for taking input
+
+
+
+#function for comparing inputs
