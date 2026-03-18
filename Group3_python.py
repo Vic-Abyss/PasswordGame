@@ -54,16 +54,16 @@ class passwordAndHintHandeler:
     # import random
     # from pathlib import Path
 
-    # class variables
+    # instance variables
+    # passwordFile
         # set this to the selected password file
-    passwordFile = ""
+    #  secretRow
         # this is the most important array, you never reveal the first record unless the guess is correct but for every guess you display the next record, the nuber of hints is equal to the array length - 1
-    secretRow = []
+    #  pastRowNums
         # record of the row numbers that have already been pulled, to reduce the long term memory usage.
-    pastRowNums = []
 
-    def getNextSecretRow():
-        with open (passwordFile, newline='\r\n') as csvFile:
+    def getNextSecretRow(self):
+        with open (self.passwordFile, newline='\r\n') as csvFile:
             reader = csv.reader(csvFile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
             rows = []
             for row in reader:
@@ -75,9 +75,9 @@ class passwordAndHintHandeler:
                 index = random.randrange(0,len(rows))
                 if pastRowNums.__contains__(index):
                     flag = True
-            secretRow = rows[index]
-            pastRowNums.append(index)
-            print(secretRow)
+            self.secretRow = rows[index]
+            self.pastRowNums.append(index)
+            print(self.secretRow)
 
     # look at the dictonary to see what password lists are present
     @staticmethod
@@ -87,10 +87,9 @@ class passwordAndHintHandeler:
 
     # sets the new password file, and clears the class arrays
     def setPasswordFile(self, newPasswordFile):
-        passwordFile = ""
-        passwordFile = newPasswordFile
-        pastRowNums = []
-        secretRow = []
+        self.passwordFile = newPasswordFile
+        self.pastRowNums = []
+        self.secretRow = []
     # TESTING to validated outputs
     # getNextSecretRow()
     # getNextSecretRow()
