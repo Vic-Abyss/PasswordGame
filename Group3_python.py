@@ -3,8 +3,9 @@
 #Owen, Ylli, and Valerie
 import csv
 import random
+from pathlib import Path
 #function to generate a password
-# TODO: rewrite this class with nested arrays
+
 # def generatePassword():
 #     filename = 'passwordList.txt'
 #     all_passwords = []
@@ -38,8 +39,8 @@ def comparePassword(userGuess, machinePassword):
         hint(passwordIndex)
         input("Enter your new password guess: ")
 
-if __name__ == '__main__':
-    generatePassword()
+# if __name__ == '__main__':
+#     generatePassword()
 
     
 class passwordAndHintHandeler:
@@ -49,9 +50,9 @@ class passwordAndHintHandeler:
         # Nicole Bromberek (Raven System)
 
     # imports
-    import csv
-    import random
-    from pathlib import Path
+    # import csv
+    # import random
+    # from pathlib import Path
 
     # class variables
         # set this to the selected password file
@@ -79,12 +80,13 @@ class passwordAndHintHandeler:
             print(secretRow)
 
     # look at the dictonary to see what password lists are present
+    @staticmethod
     def getListOfPasswordTypes():
-        dictonary = Path("dictonary")
+        dictonary = Path('dictonary')
         return dictonary.iterdir()
 
     # sets the new password file, and clears the class arrays
-    def setPasswordFile(newPasswordFile):
+    def setPasswordFile(self, newPasswordFile):
         passwordFile = ""
         passwordFile = newPasswordFile
         pastRowNums = []
@@ -93,3 +95,11 @@ class passwordAndHintHandeler:
     # getNextSecretRow()
     # getNextSecretRow()
     # getNextSecretRow()
+# pwdHandeler = passwordAndHintHandeler()
+# listOfPasswordFiles = pwdHandeler.getListOfPasswordTypes()
+# for child in listOfPasswordFiles:
+#     print("Child")
+#     print(child)
+#     pwdHandeler.setPasswordFile(child)
+#     print("setPasswordFile")
+#     print(pwdHandeler.passwordFile)

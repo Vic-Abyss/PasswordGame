@@ -6,8 +6,8 @@
 # imports
 
     # for password handeling
-import Group3_python as pwdHandeler
-pwdHandeler = pwdHandeler.passwordAndHintHandeler()
+import Group3_python
+pwdHandeler = Group3_python.passwordAndHintHandeler()
 
     # for user interface views:
         #each view is a self contained loop.
@@ -34,7 +34,6 @@ def replayGreeter():
 
 def exiter():
     print("goodby")
-
 
 listOfPasswordFiles = pwdHandeler.getListOfPasswordTypes()
 for child in listOfPasswordFiles:
